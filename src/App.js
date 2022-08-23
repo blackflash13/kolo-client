@@ -1,25 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import Map from "./components/Map";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+
+    return (
+        <>
+            <Map
+                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCITAJ4iMfdDK9t5nRIdBTgHwXBZi_KT40.exp&libraries=geometry,drawing,places"
+                loadingElement={<div style={{height: `100%`}}/>}
+                containerElement={<div style={{height: `400px`}}/>}
+                mapElement={<div style={{height: `100%`}}/>}
+            />
+
+        </>
+    )
 }
-
-export default App;

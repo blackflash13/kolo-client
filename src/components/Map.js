@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {GoogleMap, InfoWindowF, MarkerF} from "@react-google-maps/api";
+import React, { useEffect, useState } from "react";
+import { GoogleMap, InfoWindowF, MarkerF } from "@react-google-maps/api";
 
 
 import Api from "../api";
@@ -17,7 +17,7 @@ function Map() {
     const [isLoading, setIsLoading] = useState(false)
 
 
-    const getData = async () => {
+    const getData = async() => {
         await Api.getAllLocations().then(data => {
             setMarkers(data)
         })
@@ -31,10 +31,10 @@ function Map() {
         }
 
 
-        call()/*.then(() => userPosition());*/
+        call() /*.then(() => userPosition());*/
         setTimeout(() => {
             setIsLoading(false)
-        }, 200)
+        }, 300)
 
     }, []);
 
@@ -55,37 +55,51 @@ function Map() {
     };
 
 
-    return (
-        <>
-            {isLoading ? <div className="vh-100 d-flex justify-content-center align-items-center">
-                    <div className="spinner-border" role="status" style={spinnerStyle}>
+    return ( <
+        >
+        {
+            isLoading ? < div className = "vh-100 d-flex justify-content-center align-items-center" >
+            <
+            div className = "spinner-border"
+            role = "status"
+            style = { spinnerStyle } >
 
-                    </div>
-                </div> :
-                <GoogleMap
-                    onLoad={handleOnLoad}
-                    onClick={() => setActiveMarker(null)}
-                    mapContainerStyle={{width: "100vw", height: "100vh"}}
-                >
-                    {pos.map(({id, name, description, position}) => (
-                        <MarkerF
-                            key={id}
-                            position={position}
-                            onClick={() => handleActiveMarker(id)}
-                        >
-                            {activeMarker === id ? (
-                                <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
-                                    <div>
-                                        <h5>{name}</h5>
-                                        <p>{description}</p>
-                                    </div>
-                                </InfoWindowF>
-                            ) : null}
-                        </MarkerF>
-                    ))}
-                </GoogleMap>
+            <
+            /div> < /
+            div > : <
+                GoogleMap
+            onLoad = { handleOnLoad }
+            onClick = {
+                () => setActiveMarker(null)
             }
-        </>
+            mapContainerStyle = {
+                { width: "100vw", height: "100vh" }
+            } > {
+                pos.map(({ id, name, description, position }) => ( <
+                    MarkerF key = { id }
+                    position = { position }
+                    onClick = {
+                        () => handleActiveMarker(id)
+                    } > {
+                        activeMarker === id ? ( <
+                            InfoWindowF onCloseClick = {
+                                () => setActiveMarker(null)
+                            } >
+                            <
+                            div >
+                            <
+                            h5 > { name } < /h5> <
+                            p > { description } < /p> < /
+                            div > <
+                            /InfoWindowF>
+                        ) : null
+                    } <
+                    /MarkerF>
+                ))
+            } <
+            /GoogleMap>
+        } <
+        />
     );
 }
 
